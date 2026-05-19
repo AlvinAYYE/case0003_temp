@@ -18,4 +18,4 @@ API文件則是整理在 `yuekang-openapi-docs`中
 
 使用 uv最為包管理工具，且安裝mypy、ruff、pytest，後端採用django
 
-請使用DDD領域驅動開發，並且確保每一個對象都有完整的覆蓋測試。
+請使用DDD領域驅動開發，並且使用TDD確保每一個對象都有完整的覆蓋測試。
