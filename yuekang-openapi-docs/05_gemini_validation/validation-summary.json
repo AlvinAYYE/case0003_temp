@@ -1,0 +1,36 @@
+{
+  "openapi": "3.0.1",
+  "title": "悦康开放平台 OPEN-API SPECIFICATION",
+  "version": "1.8.1-SNAPSHOT",
+  "paths": 181,
+  "operations": 207,
+  "schemas": 486,
+  "methods": {
+    "POST": 73,
+    "GET": 107,
+    "PUT": 19,
+    "DELETE": 8
+  },
+  "modules": {
+    "01. 基础安全机制": 2,
+    "02. 基础运营数据": 28,
+    "03. 产品类目数据": 31,
+    "04. 诊疗服务流程": 23,
+    "05. 客户关系管理": 25,
+    "06. 销售财务数据": 52,
+    "07. 市场营销集成": 8,
+    "08. 库存物料集成": 15,
+    "10. 业务事件订阅": 6,
+    "11. 电子健康档案": 8,
+    "12. 云晰系统集成": 3,
+    "X1. 业务报表数据": 3,
+    "X2. SCRM集成服务": 3
+  },
+  "event_operations": 6,
+  "output_files": [
+    "05_gemini_validation\\api-report.md",
+    "05_gemini_validation\\endpoints.csv",
+    "05_gemini_validation\\subscription-events.csv",
+    "05_gemini_validation\\validation-summary.json"
+  ]
+}

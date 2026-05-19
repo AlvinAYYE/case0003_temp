@@ -1,0 +1,247 @@
+# API 總覽報告
+
+## 總覽 (Overview)
+- **OpenAPI Version**: 3.0.1
+- **Title**: 悦康开放平台 OPEN-API SPECIFICATION
+- **Version**: 1.8.1-SNAPSHOT
+- **Description**: LINKEDCARE YRONG MEDICAL COSMETIC SAAS OPEN PLATFORM - API SPECIFICATION
+
+## 認證 (Authentication) & 安全 (Security)
+- x-access-token
+
+## 模組統計 (Module Statistics)
+- 01. 基础安全机制: 2 個端點
+- 02. 基础运营数据: 28 個端點
+- 03. 产品类目数据: 31 個端點
+- 04. 诊疗服务流程: 23 個端點
+- 05. 客户关系管理: 25 個端點
+- 06. 销售财务数据: 52 個端點
+- 07. 市场营销集成: 8 個端點
+- 08. 库存物料集成: 15 個端點
+- 10. 业务事件订阅: 6 個端點
+- 11. 电子健康档案: 8 個端點
+- 12. 云晰系统集成: 3 個端點
+- X1. 业务报表数据: 3 個端點
+- X2. SCRM集成服务: 3 個端點
+
+## 訂閱事件接口 (Subscription Event Endpoints)
+- **GET** `/api/v1/event/event-history`: 获取历史事件分页列表
+- **GET** `/api/v1/event/event-history/single-entity`: 获取特定业务实体对应的历史事件列表
+- **GET** `/api/v1/event/subscribe`: 获取当前订阅列表
+- **POST** `/api/v1/event/subscribe`: 订阅系统业务事件主题，结果返回当前订阅
+- **GET** `/api/v1/event/topic`: 获取当前系统支持的事件主题
+- **POST** `/api/v1/event/unsubscribe/{id}`: 取消订阅系统业务事件主题
+
+## 完整端點索引 (Full Endpoint Index)
+- **POST** `/api/v1/auth/login`: 根据注册的APPID获取访问令牌（Token）
+- **POST** `/api/v1/auth/refresh`: 在访问令牌（Token）过期之前，使用临时ticket更新令牌，可避免secret泄漏
+- **GET** `/api/v1/foundation/channel`: 获取授权机构下的客户渠道信息
+- **POST** `/api/v1/foundation/channel`: 在指定层级下创建渠道新节点
+- **PUT** `/api/v1/foundation/channel/partial/{type}/{id}`: 部分修改指定渠道节点
+- **DELETE** `/api/v1/foundation/channel/{type}/{id}`: 删除指定层级的指定渠道节点
+- **PUT** `/api/v1/foundation/channel/{type}/{id}/active`: 改变指定渠道节点(不包含分类)启用状态
+- **GET** `/api/v1/foundation/clinic`: 获取授权机构下的诊所信息
+- **GET** `/api/v1/foundation/clinic/{id}`: 根据ID获取诊所信息
+- **GET** `/api/v1/foundation/clinic/{id}/room`: 查找指定诊所的治疗房间、手术房间
+- **GET** `/api/v1/foundation/code/{system}`: 获取授权机构下的指定字典数据
+- **POST** `/api/v1/foundation/department`: 在授权机构下新增组织节点 - 部门
+- **GET** `/api/v1/foundation/download/{fileId}`: 下载文件接口
+- **GET** `/api/v1/foundation/employee`: 获取授权机构下的员工信息
+- **POST** `/api/v1/foundation/employee`: 在授权机构下创建员工
+- **GET** `/api/v1/foundation/employee/{id}`: 获取授权机构下的指定员工信息
+- **PUT** `/api/v1/foundation/employee/{id}`: 修改员工信息
+- **GET** `/api/v1/foundation/employee/{id}/roles`: 获取授权机构下的指定员工功能权限
+- **PUT** `/api/v1/foundation/employeeBase/{id}`: 修改员工基础信息
+- **GET** `/api/v1/foundation/job`: 获取授权机构下的员工职位角色信息
+- **GET** `/api/v1/foundation/logo`: 获取授权机构的logo(Base64格式，空代表未设置)
+- **GET** `/api/v1/foundation/medical-department`: 获取授权机构下医疗科室信息
+- **GET** `/api/v1/foundation/organization`: 获取授权机构下的组织架构，包括公司、区域、诊所、部门
+- **GET** `/api/v1/foundation/role`: 获取授权机构下的员工功能角色信息
+- **GET** `/api/v1/foundation/role/{id}`: 获取授权机构下指定功能角色信息
+- **POST** `/api/v1/foundation/tagDict/create`: 创建标签
+- **POST** `/api/v1/foundation/tagDict/group/create`: 创建标签组
+- **POST** `/api/v1/foundation/tagDict/group/update`: 修改标签组
+- **POST** `/api/v1/foundation/tagDict/update`: 修改标签
+- **GET** `/api/v1/foundation/tagSets`: 获取标签信息
+- **POST** `/api/v1/catalog/category`: 指定类型下创建分类新节点 - 各类型通用
+- **GET** `/api/v1/catalog/category/goods/tree`: 获取授权机构下的物料类数据分类(树状结构)
+- **GET** `/api/v1/catalog/category/service/tree`: 获取授权机构下的服务类项目分类(树状结构)
+- **GET** `/api/v1/catalog/category/{id}`: 获取指定ID分类节点 - 各类型通用
+- **PUT** `/api/v1/catalog/category/{id}`: 修改指定ID分类节点 - 各类型通用
+- **DELETE** `/api/v1/catalog/category/{id}`: 删除指定ID分类节点 - 各类型通用
+- **POST** `/api/v1/catalog/product/clinic-sales-price/list`: 查询项目/商品下发
+- **POST** `/api/v1/catalog/product/clinic-sales-price/update`: 修改项目/商品下发
+- **GET** `/api/v1/catalog/product/goods`: 获取授权机构下的物料类数据 - 耗材、药品、药妆等受库存管控条目
+- **POST** `/api/v1/catalog/product/goods`: 新建物料类数据
+- **GET** `/api/v1/catalog/product/goods/{id}`: 获取授权机构下的物料类数据 - 耗材、药品、药妆等受库存管控条目
+- **PUT** `/api/v1/catalog/product/goods/{id}`: 修改物料类数据
+- **PUT** `/api/v1/catalog/product/goods/{id}/active`: 停用、启用物料类数据
+- **GET** `/api/v1/catalog/product/service`: 获取授权机构下的服务类项目数据 - 服务项目
+- **POST** `/api/v1/catalog/product/service`: 新建服务项目数据
+- **POST** `/api/v1/catalog/product/service/addMaterial`: 添加项目的使用耗材
+- **POST** `/api/v1/catalog/product/service/addOperator`: 添加项目的操作人员
+- **POST** `/api/v1/catalog/product/service/addStep`: 添加项目的操作步骤
+- **POST** `/api/v1/catalog/product/service/deleteMaterial`: 删除项目的使用耗材
+- **POST** `/api/v1/catalog/product/service/deleteOperator`: 删除项目的操作人员
+- **POST** `/api/v1/catalog/product/service/deleteStep`: 删除项目的操作步骤
+- **GET** `/api/v1/catalog/product/service/findExecutionRole`: 查询操作人员职位
+- **GET** `/api/v1/catalog/product/service/getOperationStepDictPageList`: 查询操作步骤
+- **GET** `/api/v1/catalog/product/service/price-rule`: 获取授权机构下的服务类项目数据 - 服务项目价格规则
+- **POST** `/api/v1/catalog/product/service/price-rule/update`: 修改服务类项目价格规则
+- **POST** `/api/v1/catalog/product/service/updateMaterial`: 修改项目的使用耗材
+- **POST** `/api/v1/catalog/product/service/updateOperator`: 修改项目的操作人员
+- **POST** `/api/v1/catalog/product/service/updateStep`: 修改项目的操作步骤
+- **GET** `/api/v1/catalog/product/service/{id}`: 获取授权机构下的服务类项目数据 - 单个项目
+- **PUT** `/api/v1/catalog/product/service/{id}`: 根据服务项目id更新服务项目
+- **PUT** `/api/v1/catalog/product/service/{id}/active`: 暂停/启用服务项目
+- **GET** `/api/v1/workflow/appointment`: 获取授权机构下的预约数据 - 列表
+- **POST** `/api/v1/workflow/appointment`: 创建预约
+- **POST** `/api/v1/workflow/appointment/getAppointmentFreeList`: 获取预约空闲时间段
+- **GET** `/api/v1/workflow/appointment/{id}`: 获取授权机构下的预约数据 - 单个
+- **PUT** `/api/v1/workflow/appointment/{id}/cancel`: 取消预约
+- **PUT** `/api/v1/workflow/appointment/{id}/confirm`: 确认预约
+- **PUT** `/api/v1/workflow/appointment/{id}/partial`: 修改预约
+- **POST** `/api/v1/workflow/archives/document/upload`: 上传档案文件
+- **GET** `/api/v1/workflow/consultation`: 获取授权机构下的咨询数据
+- **POST** `/api/v1/workflow/consultation`: 创建咨询
+- **POST** `/api/v1/workflow/modify/consultation`: 修改咨询
+- **GET** `/api/v1/workflow/participant/status`: 获取授权机构下的现场人员空闲状态 - Experimental
+- **GET** `/api/v1/workflow/photoCompares`: 获取前后对比照数据
+- **GET** `/api/v1/workflow/schedule`: 分页获取授权机构下的排班数据
+- **POST** `/api/v1/workflow/schedule`: 在授权机构下创建排班
+- **GET** `/api/v1/workflow/schedule-rule`: 分页获取授权机构下的班次信息
+- **POST** `/api/v1/workflow/schedule-rule`: 在授权机构下创建班次
+- **PUT** `/api/v1/workflow/schedule-rule/{id}`: 在授权机构下修改班次
+- **POST** `/api/v1/workflow/sign-in`: 创建签到
+- **GET** `/api/v1/workflow/visit`: 获取授权机构下的到访数据
+- **POST** `/api/v1/workflow/visit`: 创建到访
+- **GET** `/api/v1/workflow/visit/customer-info`: 到访客户信息
+- **GET** `/api/v1/workflow/visit/{customerId}/operation/token`: 到访操作token
+- **GET** `/api/v1/crm/customer`: 获取授权机构下的客户数据
+- **POST** `/api/v1/crm/customer`: 在授权机构下创建新客户
+- **GET** `/api/v1/crm/customer/findByMobile`: 根据手机号码查询客户数据
+- **POST** `/api/v1/crm/customer/getOperatorLog`: 查询客户修改日志
+- **POST** `/api/v1/crm/customer/gift/add`: 增值金调整
+- **GET** `/api/v1/crm/customer/group`: 获取授权机构下的客户的分群标签
+- **GET** `/api/v1/crm/customer/group-definition`: 获取授权机构下的客户分群分组定义 - 分页
+- **POST** `/api/v1/crm/customer/membershipLevel`: 修改客户会员等级
+- **GET** `/api/v1/crm/customer/membershipLevel/list`: 获取会员等级目录
+- **GET** `/api/v1/crm/customer/merge-log`: 获取授权机构下的客户合并数据
+- **GET** `/api/v1/crm/customer/{id}`: 根据客户Id获取授权机构下的客户数据
+- **PUT** `/api/v1/crm/customer/{id}`: 在授权机构下修改客户
+- **DELETE** `/api/v1/crm/customer/{id}`: 在授权机构下删除客户
+- **GET** `/api/v1/crm/customer/{id}/account`: 根据客户Id获取授权机构下的账户余额
+- **POST** `/api/v1/crm/customer/{id}/account/coupon`: 根据客户ID绑定优惠券 - 返回账户未启用券列表
+- **GET** `/api/v1/crm/customer/{id}/account/coupon/_list`: 根据客户ID查询券余
+- **PUT** `/api/v1/crm/customer/{id}/account/coupon/_unbind`: 根据客户ID解绑优惠券 - 返回账户未启用券列表
+- **PUT** `/api/v1/crm/customer/{id}/account/credit`: 根据客户ID进行积分增减操作
+- **GET** `/api/v1/crm/customer/{id}/account/journal`: 根据客户Id获取授权机构下的账户余额变动数据
+- **GET** `/api/v1/crm/customer/{id}/careClass`: 获取授权机构下根据客户Id获取客户当日到访类型
+- **GET** `/api/v1/crm/customer/{id}/expense/summary`: 根据客户ID获取客户汇总消费金额
+- **POST** `/api/v1/crm/customer/{id}/tag`: 在授权机构下根据客户ID添加自定义标签
+- **DELETE** `/api/v1/crm/customer/{id}/tag`: 在授权机构下根据客户ID删除标签
+- **GET** `/api/v1/crm/customerDetail`: 根据客户Id获取授权机构下的客户简单数据
+- **GET** `/api/v1/crm/customerList`: 获取授权机构下的客户列表数据
+- **POST** `/api/v1/account-item/balance/refund`: 储值金退款
+- **GET** `/api/v1/account-item/card/detail`: 查询权益 - 按ID查询卡项权益详情
+- **GET** `/api/v1/account-item/card/page`: 查询权益 - 按客户ID查询可用卡项
+- **POST** `/api/v1/account-item/card/redeem`: 卡项确认品项
+- **POST** `/api/v1/account-item/card/redeem-revoke`: 卡项作废确认品项
+- **GET** `/api/v1/account-item/card/redeemed/page`: 查询权益 - 支持查询卡项已兑换的单品权益
+- **GET** `/api/v1/account-item/product-item/byId`: 查询权益 - 按ID查询单品权益
+- **POST** `/api/v1/account-item/reward/adjust`: 增值金余额调整
+- **POST** `/api/v1/billing/customer/transfer/product-item`: 操作客户转疗（自动同意转疗）
+- **GET** `/api/v1/billing/customer/{id}/esthetics/estimate-item`: 获取客户美学评估单特征
+- **GET** `/api/v1/billing/customer/{id}/execution-record`: 根据客户Id获取授权机构下的客户项目执行数据
+- **GET** `/api/v1/billing/customer/{id}/prepaid-order`: 根据客户Id获取授权机构下的客户充值订单数据
+- **GET** `/api/v1/billing/customer/{id}/sales-order`: 根据客户Id获取授权机构下的客户销售订单数据
+- **GET** `/api/v1/billing/customer/{id}/transfer/product-item`: 获取客户可转疗项目
+- **GET** `/api/v1/billing/esthetics/order-relation`: 获取订单与美学规划关联关系
+- **PUT** `/api/v1/billing/esthetics/order-relation`: 修改订单与美学规划关联关系
+- **POST** `/api/v1/billing/esthetics/plan`: 获取客户美学方案
+- **POST** `/api/v1/billing/exchange/list-by-target-ids`: 换入订单ID查询换购记录
+- **GET** `/api/v1/billing/exchange/page`: 获取换购记录
+- **GET** `/api/v1/billing/execution-item`: 获取授权机构下的可执行条目信息 - 订单中的项目条目
+- **GET** `/api/v1/billing/execution-item/transfer`: 获取授权机构下的可执行条目转赠记录
+- **GET** `/api/v1/billing/execution-record`: 获取授权机构下的客户项目执行数据
+- **POST** `/api/v1/billing/execution-record`: 在授权机构下创建项目执行记录数据
+- **PUT** `/api/v1/billing/execution-record/cancel`: 作废执行记录
+- **POST** `/api/v1/billing/execution-record/fulfillment/detail`: 查询执行记录的履约明细
+- **PUT** `/api/v1/billing/execution-record/revoke`: 撤回执行记录
+- **GET** `/api/v1/billing/execution-record/{id}`: 获取授权机构下的客户项目执行数据
+- **GET** `/api/v1/billing/financial/billing-apportion`: 获取收退款分摊信息
+- **GET** `/api/v1/billing/financial/refund-order-billing-apportion`: 获取退款订单分摊信息
+- **POST** `/api/v1/billing/free-order`: 创建免单订单，创建后为支付完成，忽略所有审批流程
+- **POST** `/api/v1/billing/order/performance-allocation`: 订单业绩分配
+- **POST** `/api/v1/billing/order/refund`: 订单退款V2，仅支持原路退，忽略审批流程
+- **POST** `/api/v1/billing/order/refund/v3`: 订单退款V3，支持统一退。忽略审批流程
+- **GET** `/api/v1/billing/payment`: 获取授权机构下的收银摘要数据 - 收银摘要列表
+- **GET** `/api/v1/billing/payment-method`: 获取授权机构下的支付方式
+- **POST** `/api/v1/billing/payment/discard`: 作废收款单
+- **POST** `/api/v1/billing/payment/list-signature`: 获取支付的签名图片（包含无有效签名结果）
+- **GET** `/api/v1/billing/payment/{id}`: 获取授权机构下的收银摘要数据 - 收银详细信息
+- **POST** `/api/v1/billing/prepaid-order`: 创建储值金订单，创建后为待支付订单，忽略所有审批流程
+- **GET** `/api/v1/billing/refund`: 获取授权机构下的退款数据 - 退款列表
+- **GET** `/api/v1/billing/refund/{id}`: 获取授权机构下的退款数据 - 单个退款
+- **GET** `/api/v1/billing/sales-order`: 获取授权机构下的销售订单摘要数据 - 订单摘要信息
+- **POST** `/api/v1/billing/sales-order`: 创建销售订单，创建后为待支付订单，忽略所有审批流程
+- **POST** `/api/v1/billing/sales-order/list-invoices`: 根据订单ID获取销售订单发票明细
+- **GET** `/api/v1/billing/sales-order/{id}`: 根据订单ID获取销售订单详细数据 - 订单详细信息
+- **DELETE** `/api/v1/billing/sales-order/{id}`: 销售订单废弃，未支付订单可废弃，废弃后订单不可操作
+- **POST** `/api/v1/billing/sales-order/{id}/payment`: 销售订单支付，支付后为已支付订单，忽略所有审批流程
+- **POST** `/api/v1/billing/sales-order/{id}/payment/by-line`: 销售订单分行支付，支付后为已支付订单，忽略所有审批流程
+- **GET** `/api/v1/billing/sales-order/{id}/refund`: 根据订单ID获取销售订单退款详细数据 - 订单退款详细信息
+- **POST** `/api/v1/billing/service-fee/order`: 根据订单ID查询服务费
+- **POST** `/api/v1/billing/service-fee/page`: 分页查询服务费
+- **GET** `/api/v1/billing/transfer`: 获取授权机构下转诊/转疗数据
+- **GET** `/api/v1/market/card`: 查询授权机构下的卡项信息
+- **GET** `/api/v1/market/card/prompt`: 根据条件查询可用卡项信息
+- **GET** `/api/v1/market/card/{id}`: 精确获取授权机构下的卡项信息
+- **GET** `/api/v1/market/coupon`: 获取授权机构下的优惠券信息
+- **GET** `/api/v1/market/coupon/{id}`: 精确获取授权机构下的优惠券信息
+- **GET** `/api/v1/market/promotion`: 获取授权机构下的促销信息
+- **POST** `/api/v1/market/promotion/active`: 促销启用/停用
+- **GET** `/api/v1/market/promotion/{id}`: 根据ID获取促销信息
+- **GET** `/api/v1/inventory/change-type/{bizType}`: 获取授权机构下出/入库类别，bizType参数: stock-in(入库), stock-out(出库)
+- **GET** `/api/v1/inventory/outbound/all`: 获取提货单信息 - 翻页
+- **GET** `/api/v1/inventory/purchaseOrder`: 物资采购订单
+- **GET** `/api/v1/inventory/stock-item`: 获取授权机构下的所有库存条目信息
+- **GET** `/api/v1/inventory/stock-item/stock-in`: 物料入库记录
+- **POST** `/api/v1/inventory/stock-item/stock-in`: 物料入库操作
+- **DELETE** `/api/v1/inventory/stock-item/stock-in/{id}`: 作废物料入库记录
+- **GET** `/api/v1/inventory/stock-item/stock-out`: 物料出库记录
+- **POST** `/api/v1/inventory/stock-item/stock-out`: 物料出库操作
+- **DELETE** `/api/v1/inventory/stock-item/stock-out/{id}`: 作废物料出库记录
+- **GET** `/api/v1/inventory/stock-item/transfer`: 物料调拨记录
+- **POST** `/api/v1/inventory/stock-item/transfer`: 物料库存调拨
+- **DELETE** `/api/v1/inventory/stock-item/transfer/{id}`: 作废物料调拨记录
+- **GET** `/api/v1/inventory/supplier`: 获取供应商信息 - 翻页
+- **GET** `/api/v1/inventory/warehouse`: 获取授权机构下的所有库房信息
+- **GET** `/api/v1/event/event-history`: 获取历史事件分页列表
+- **GET** `/api/v1/event/event-history/single-entity`: 获取特定业务实体对应的历史事件列表
+- **GET** `/api/v1/event/subscribe`: 获取当前订阅列表
+- **POST** `/api/v1/event/subscribe`: 订阅系统业务事件主题，结果返回当前订阅
+- **GET** `/api/v1/event/topic`: 获取当前系统支持的事件主题
+- **POST** `/api/v1/event/unsubscribe/{id}`: 取消订阅系统业务事件主题
+- **POST** `/api/v1/ehr/care-plan`: 在授权机构下的创建患者诊疗计划
+- **GET** `/api/v1/ehr/prescription`: 获取授权机构下的处方数据
+- **GET** `/api/v1/ehr/prescriptionNew`: 获取授权机构下的新版本医嘱服务的处方数据
+- **GET** `/api/v1/ehr/queryAdvicesOrderList`: 获取授权机构下医嘱服务的医嘱数据
+- **GET** `/api/v1/ehr/queryAdvicesOrderListByPatientId`: 获取授权机构下客户的医嘱服务的医嘱数据
+- **GET** `/api/v1/ehr/queryMedicalRecordDetail`: 获取授权机构下医嘱服务的病历数据明细
+- **GET** `/api/v1/ehr/queryMedicalRecordList`: 获取授权机构下医嘱服务的病历数据
+- **GET** `/api/v1/ehr/queryMedicalRecordListByPatientId`: 获取授权机构下客户的医嘱服务的病历数据
+- **POST** `/api/v1/integration/yunxi/create-order`: 多品项开单，按品项拆分多个订单，成功后为已支付订单，忽略所有审批流程
+- **POST** `/api/v1/integration/yunxi/fulfillment`: 单订单（单品项）核销状态同步
+- **POST** `/api/v1/integration/yunxi/refund`: 单订单（单品项）全部或部分退款
+- **GET** `/api/v1/analytic/cash/performance/page`: 查询员工销售业绩数据
+- **GET** `/api/v1/analytic/execution/performance/page`: 查询员工执行业绩数据
+- **GET** `/api/v1/analytic/financial/accountDealing/page`: 查询往来账数据
+- **POST** `/api/v1/scrm/proxy`: scrm服务代理
+- **GET** `/api/v1/scrm/wechat-fan`: 查询授权机构下的微信公众号粉丝
+- **POST** `/api/v1/scrm/wechat-fan/bind`: 在授权机构下绑定微信公众号粉丝
+
+## 整合注意事項 (Integration Notes)
+- 請確保在使用 API 時提供正確的認證憑證。
+- 訂閱事件接口可能需要特殊的 webhook 配置。
+- 詳細參數說明請參考完整的 OpenAPI 規範檔案。

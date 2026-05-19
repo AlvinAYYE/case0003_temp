@@ -1,0 +1,7 @@
+﻿method,path,tags,summary,operationId,description
+GET,/api/v1/event/event-history,10. 业务事件订阅,获取历史事件分页列表,pageEventHistory,
+GET,/api/v1/event/event-history/single-entity,10. 业务事件订阅,获取特定业务实体对应的历史事件列表,pageEventHistory_1,
+GET,/api/v1/event/subscribe,10. 业务事件订阅,获取当前订阅列表,subscribeTopics_1,
+POST,/api/v1/event/subscribe,10. 业务事件订阅,订阅系统业务事件主题，结果返回当前订阅,subscribeTopics,
+GET,/api/v1/event/topic,10. 业务事件订阅,获取当前系统支持的事件主题,listSupportedTopics,
+POST,/api/v1/event/unsubscribe/{id},10. 业务事件订阅,取消订阅系统业务事件主题,unsubscribeTopics,
