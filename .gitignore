@@ -5,3 +5,6 @@ __pycache__/
 # IDE and Environment
 .idea/
 .venv/
+
+# Local conversation exports
+docs/我與學長的對話20260522\[LINE\]Eli.txt
